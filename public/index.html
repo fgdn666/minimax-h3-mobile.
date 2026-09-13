@@ -26,8 +26,8 @@
     <section class="card form-card">
       <label>API 区域</label>
       <div class="segmented" role="group" aria-label="API 区域">
-        <button class="seg active" data-region="global">国际站</button>
-        <button class="seg" data-region="cn">中国站</button>
+        <button class="seg active" data-region="global" type="button">国际站</button>
+        <button class="seg" data-region="cn" type="button">中国站</button>
       </div>
 
       <label for="apiKey">MiniMax API Key</label>
@@ -39,6 +39,21 @@
       <label for="prompt">提示词</label>
       <textarea id="prompt" rows="7" maxlength="6000" placeholder="例如：雨夜东京街头，一名穿黑色风衣的人缓慢走过霓虹灯，镜头低机位推进，环境中有雨声与远处车辆声。"></textarea>
       <div class="counter"><span id="charCount">0</span>/6000</div>
+
+      <label for="imageInput">上传图片（可选）</label>
+      <div class="upload-box">
+        <input id="imageInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/heic,image/heif" />
+        <p class="upload-help">上传 1 张图片后，将按“首帧图生视频”方式提交。系统会在手机端自动压缩图片，减少上传失败概率。</p>
+      </div>
+
+      <div id="imagePreviewCard" class="preview-card hidden">
+        <img id="imagePreview" alt="图片预览" />
+        <div class="preview-meta">
+          <strong id="imageName">未选择图片</strong>
+          <span id="imageInfo"></span>
+        </div>
+        <button id="removeImage" class="ghost" type="button">移除图片</button>
+      </div>
 
       <div class="grid2">
         <div>
@@ -52,6 +67,7 @@
             <option value="21:9">21:9</option>
             <option value="adaptive">自适应</option>
           </select>
+          <p id="ratioHint" class="field-hint">纯文生视频时会使用这里的比例。</p>
         </div>
         <div>
           <label for="duration">时长</label>
@@ -69,8 +85,8 @@
 
       <label>清晰度</label>
       <div class="segmented" role="group" aria-label="清晰度">
-        <button class="seg res active" data-resolution="768P">768P</button>
-        <button class="seg res" data-resolution="2K">2K</button>
+        <button class="seg res active" data-resolution="768P" type="button">768P</button>
+        <button class="seg res" data-resolution="2K" type="button">2K</button>
       </div>
 
       <button id="generate" class="primary" type="button">生成视频</button>
