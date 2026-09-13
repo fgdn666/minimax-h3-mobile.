@@ -1,0 +1,9 @@
+{
+  "name": "MiniMax H3 Mobile",
+  "short_name": "H3 Mobile",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0c0f",
+  "theme_color": "#0b0c0f",
+  "description": "使用自己的 MiniMax API Key 调用 MiniMax H3 视频生成"
+}

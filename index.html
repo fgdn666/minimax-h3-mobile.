@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0c0f" />
+  <title>MiniMax H3 Mobile</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="logo">H3</div>
+      <div>
+        <h1>MiniMax H3</h1>
+        <p>用你自己的 API Key，在手机上生成视频</p>
+      </div>
+    </header>
+
+    <section class="card security">
+      <div class="dot"></div>
+      <div><strong>Key 不会写入本站存储</strong><br><span>仅在当前页面会话中使用，并通过你自己部署的后端转发给 MiniMax。</span></div>
+    </section>
+
+    <section class="card form-card">
+      <label>API 区域</label>
+      <div class="segmented" role="group" aria-label="API 区域">
+        <button class="seg active" data-region="global">国际站</button>
+        <button class="seg" data-region="cn">中国站</button>
+      </div>
+
+      <label for="apiKey">MiniMax API Key</label>
+      <div class="key-row">
+        <input id="apiKey" type="password" autocomplete="off" placeholder="输入 API Key" />
+        <button id="toggleKey" class="ghost small" type="button">显示</button>
+      </div>
+
+      <label for="prompt">提示词</label>
+      <textarea id="prompt" rows="7" maxlength="6000" placeholder="例如：雨夜东京街头，一名穿黑色风衣的人缓慢走过霓虹灯，镜头低机位推进，环境中有雨声与远处车辆声。"></textarea>
+      <div class="counter"><span id="charCount">0</span>/6000</div>
+
+      <div class="grid2">
+        <div>
+          <label for="ratio">画面比例</label>
+          <select id="ratio">
+            <option value="9:16">9:16 竖屏</option>
+            <option value="16:9">16:9 横屏</option>
+            <option value="1:1">1:1 方形</option>
+            <option value="4:3">4:3</option>
+            <option value="3:4">3:4</option>
+            <option value="21:9">21:9</option>
+            <option value="adaptive">自适应</option>
+          </select>
+        </div>
+        <div>
+          <label for="duration">时长</label>
+          <select id="duration">
+            <option value="4">4 秒</option>
+            <option value="5" selected>5 秒</option>
+            <option value="6">6 秒</option>
+            <option value="8">8 秒</option>
+            <option value="10">10 秒</option>
+            <option value="12">12 秒</option>
+            <option value="15">15 秒</option>
+          </select>
+        </div>
+      </div>
+
+      <label>清晰度</label>
+      <div class="segmented" role="group" aria-label="清晰度">
+        <button class="seg res active" data-resolution="768P">768P</button>
+        <button class="seg res" data-resolution="2K">2K</button>
+      </div>
+
+      <button id="generate" class="primary" type="button">生成视频</button>
+      <p class="hint">生成会消耗你的 MiniMax API 额度。H3 为异步任务，提交后页面会自动查询进度。</p>
+    </section>
+
+    <section id="statusCard" class="card status-card hidden" aria-live="polite">
+      <div class="status-top">
+        <strong id="statusTitle">正在提交…</strong>
+        <span id="statusBadge" class="badge">等待</span>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <p id="statusText">正在连接 MiniMax。</p>
+      <p id="taskText" class="task"></p>
+    </section>
+
+    <section id="resultCard" class="card hidden">
+      <h2>生成完成</h2>
+      <video id="video" controls playsinline preload="metadata"></video>
+      <div class="actions">
+        <a id="openVideo" class="primary link-btn" target="_blank" rel="noopener noreferrer">打开视频</a>
+        <button id="copyUrl" class="ghost" type="button">复制链接</button>
+      </div>
+    </section>
+
+    <section id="errorCard" class="card error hidden">
+      <strong>请求失败</strong>
+      <pre id="errorText"></pre>
+    </section>
+
+    <footer>MiniMax H3 Mobile · BYOK · 不隶属于 MiniMax 官方</footer>
+  </main>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
